@@ -6,9 +6,18 @@
 
 - npx create-react-app netflix-gpt
 - configured tailwindcss
+- Routing
 - Header
 - Login Form
 - Sign Up
+- Form validation
+- useRef Hook
+- Firebase setup
+- Deploying app to production
+- Create signup in firebase
+- Implemented Sign in user
+- Created redux store
+- Solved sigout bug
 
 # Features
 
