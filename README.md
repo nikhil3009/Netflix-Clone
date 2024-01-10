@@ -18,6 +18,9 @@
 - Implemented Sign in user
 - Created redux store
 - Solved sigout bug
+- solved bug fix of redirecting user to login page if not signed in and vice versa.
+- unsubscribed the onauth state change callback
+- Registered for TMDB API and got the access token, and get data from TMDB document from now playing movies list
 
 # Features
 
