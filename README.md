@@ -21,6 +21,13 @@
 - solved bug fix of redirecting user to login page if not signed in and vice versa.
 - unsubscribed the onauth state change callback
 - Registered for TMDB API and got the access token, and get data from TMDB document from now playing movies list
+- Custom Hooks for now playing movies
+- Created movieslice
+- Updated the store with store data
+- fetched data for trailer vedio
+- update store with vedio data
+- Embedded the auto play youtube vedio
+- Secondary component development
 
 # Features
 
