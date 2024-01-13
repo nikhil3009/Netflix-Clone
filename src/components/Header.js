@@ -6,11 +6,14 @@ import { auth } from '../utils/fireBase';
 import { useEffect } from 'react';
 import { addUser, removeUser } from '../utils/userSlice';
 import { LOGO, USER_LOGO } from '../utils/constants';
+import { toggleGptSearchView } from '../utils/gptSlice';
+import { changeLanguage } from '../utils/configSlice';
 
 const Header = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const user = useSelector((store) => store.user);
+	const gptShowValue = useSelector((store) => store.gpt.showGptSearch);
 	const handleSignout = () => {
 		signOut(auth)
 			.then(() => {})
@@ -38,6 +41,12 @@ const Header = () => {
 		});
 		return () => unsubscribe();
 	}, []);
+	const handleGptSearchClick = () => {
+		dispatch(toggleGptSearchView());
+	};
+	const handleLanguageChange = (e) => {
+		dispatch(changeLanguage(e.target.value));
+	};
 	return (
 		<div className='absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between'>
 			<img
@@ -47,6 +56,21 @@ const Header = () => {
 			/>
 			{user && (
 				<div className='p-2 flex'>
+					{gptShowValue && (
+						<select
+							className='p-2 bg-indigo-700 text-white m-2 rounded-lg'
+							onChange={handleLanguageChange}>
+							<option value='en'>English</option>
+							<option value='hindi'>Hindi</option>
+							<option value='telugu'>Telugu</option>
+							<option value='spanish'>Spanish</option>
+						</select>
+					)}
+					<button
+						className='py-2 px-4 m-2 mx-4 my-2 bg-blue-800 text-white rounded-lg'
+						onClick={handleGptSearchClick}>
+						{gptShowValue ? 'Homepage' : ' GPT Search'}
+					</button>
 					<img
 						className='w-12 h-12'
 						alt='userIcon'

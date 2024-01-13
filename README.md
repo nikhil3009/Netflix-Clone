@@ -28,6 +28,9 @@
 - update store with vedio data
 - Embedded the auto play youtube vedio
 - Secondary component development
+- Implement search component and integrate gpt for movie recomendations
+- Made search Multi-Language
+- Inntegration of GPT API's
 
 # Features
 
