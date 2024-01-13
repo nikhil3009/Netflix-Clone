@@ -1,19 +1,21 @@
 /** @format */
 
 import React, { useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { API_OPTIONS } from '../utils/constants';
+import { addGptMovieResult } from '../utils/gptSlice';
 import lang from '../utils/langConstants';
 import openai from '../utils/openAI';
 
 const GptSearchBar = () => {
+	const dispatch = useDispatch();
 	const langKey = useSelector((store) => store.config.lang);
 	const searchText = useRef(null);
 	const searchMovieInTMDB = async (movie) => {
 		const data = await fetch(
 			'https://api.themoviedb.org/3/search/movie?query=' +
 				movie +
-				'include_adult=false&language=en-US&page=1',
+				'&include_adult=false&language=en-US&page=1',
 			API_OPTIONS
 		);
 		const json = await data.json();
@@ -28,13 +30,13 @@ const GptSearchBar = () => {
 			messages: [{ role: 'user', content: gptQuery }],
 			model: 'gpt-3.5-turbo',
 		});
-		if (!gptResults.choices) {
-			return 'I may have ran out of gpt api credits';
-		}
-		console.log(gptResults.choices?.[0]?.messages?.content);
-		const gptMovies = gptResults.choices?.[0]?.messages?.content.split(',');
+		console.log(gptResults.choices?.[0]?.message?.content);
+		const gptMovies = gptResults.choices?.[0]?.message?.content.split(',');
 		const dataAsPromises = gptMovies.map((movie) => searchMovieInTMDB(movie));
 		const tmdbResults = await Promise.all(dataAsPromises);
+		dispatch(
+			addGptMovieResult({ movieNames: gptMovies, movieResults: tmdbResults })
+		);
 	};
 	return (
 		<div className='pt-[8%] flex justify-center'>

@@ -8,12 +8,11 @@ export const API_OPTIONS = {
 	method: 'GET',
 	headers: {
 		accept: 'application/json',
-		Authorization:
-			'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2MzRiNjViOGRmMmY4NDAxODQwNmNhMmUwM2E5NzViNyIsInN1YiI6IjY1OWVjOGJjMzgzZGYyMDBlZTQ2ZDk2NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.bglVHmpHgUkQVAS6w_C1YW23KoJBeJLjQZPKtTX6XHg',
+		Authorization: 'Bearer ' + process.env.REACT_APP_TMDB_KEY,
 	},
 };
 export const BG_URL =
 	'https://assets.nflxext.com/ffe/siteui/vlv3/c38a2d52-138e-48a3-ab68-36787ece46b3/eab6047a-a101-4a14-8515-c67563fa2205/US-en-20240101-popsignuptwoweeks-perspective_alpha_website_large.jpg';
 export const IMG_CDN_URL = 'https://image.tmdb.org/t/p/w500';
 
-export const OPENAI_KEY = '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';
+export const OPENAI_KEY = process.env.REACT_APP_OPENAI_KEY;
